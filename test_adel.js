@@ -1,0 +1,2 @@
+const { isWord } = require('./adel');
+
