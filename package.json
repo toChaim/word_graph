@@ -1,0 +1,16 @@
+{
+  "name": "adel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "adel.js",
+  "dependencies": {
+    "jasmine": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jasmine"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
