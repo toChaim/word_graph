@@ -10,26 +10,32 @@ const makeDictionary = (fileName) => {
     });
 };
 
-const makeAnagram = (function(){
+// makes a memoized anagramer function.
+// takes no arguments
+// resulting function takes string returns array of anagrams of the string.
+const makeAnagramer = function(){
     var memo = {};
 
     return (word)=>{
+        console.log('word=',word);
         word = word.split('');
         var res = [];
 
         const swap = (index)=>{
-            if(index === word.length){ res.push( word.join('') ); }
+            if(index === word.length - 1){ res.push( word.join('') ); }
             for(let i = index; i < word.length; i++){
                 if(index !== i && word[index] === word[i]){ continue; }
                 [ word[i], word[index] ]=[ word[index], word[i]];
                 swap(index+1);
                 [ word[i], word[index] ]=[ word[index], word[i]];
             }
+
+            return res;
         };
     
         memo[word] = memo[word] || swap(0);
         return memo[word];
     };
-})();
+};
 
-module.exports = { isWord, makeDictionary };
+module.exports = { isWord, makeDictionary, makeAnagramer };
