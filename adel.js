@@ -2,13 +2,11 @@ const isWord = (word, dictionary) => !!dictionary[word.toLowerCase()];
 
 const makeDictionary = (fileName) => {
     const fs = require('fs');
-    var dict;
     return new Promise((resolve, reject)=> {
         fs.readFile(fileName, 'utf8', (err, data) => {
             if(err){ reject(err); }
-            resolve (JSON.parse(data));
-        })
-         
+            else{ resolve (JSON.parse(data)); }
+        });
     });
 };
 
