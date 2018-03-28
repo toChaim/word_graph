@@ -18,6 +18,7 @@ const makeAnagramer = function(){
 
     return (word)=>{
         word = word.split('');
+        let key = [...word].sort().join('');
         var res = new Set();
 
         const swap = (index)=>{
@@ -32,9 +33,9 @@ const makeAnagramer = function(){
             }
             return [...res];
         };
-    
-        memo[word] = memo[word] || swap(0);
-        return memo[word];
+
+        memo[key] = memo[key] || swap(0);
+        return memo[key];
     };
 };
 
