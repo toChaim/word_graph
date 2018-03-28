@@ -102,12 +102,6 @@ describe('makeAnagramer', ()=>{
       expect(Array.isArray(res)).toBe(true);
       expect(res.length).toBe(360);
     });
-    it('for "abcdefg"', ()=>{
-      let anagramer = makeAnagramer();
-      let res = anagramer('abcdefg');
-      expect(Array.isArray(res)).toBe(true);
-      expect(res.length).toBe(5040);
-    });
   });
   describe('memoization should make anagramer faster', ()=>{
     it('more then two times faster secnond time it is called', ()=>{
