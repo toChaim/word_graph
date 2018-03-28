@@ -1,4 +1,4 @@
-const { isWord, makeDictionary, makeAnagramer } = require('../adel');
+const { isWord, makeDictionary, makeAnagramer } = require('../word_graph');
 //const performance = require('performance');
 const dick = {'word': []};
 
