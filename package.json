@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "adel.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "jasmine": "^3.1.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "jasmine"
   },
