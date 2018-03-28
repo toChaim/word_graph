@@ -1,4 +1,5 @@
 const { isWord, makeDictionary, makeAnagramer } = require('../adel');
+//const performance = require('performance');
 const dick = {'word': []};
 
 describe("isWord", () => {
@@ -58,52 +59,76 @@ describe('makeAnagramer', ()=>{
     let anagramer = makeAnagramer();
     expect(typeof anagramer).toBe('function');
   });
-  it('anagramer should return correct results for "a"', ()=>{
-    let anagramer = makeAnagramer();
-    let res = anagramer('a');
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBe(1);
+  describe('anagramer should return correct results', ()=>{
+    it('for "a"', ()=>{
+      let anagramer = makeAnagramer();
+      let res = anagramer('a');
+      expect(Array.isArray(res)).toBe(true);
+      expect(res.length).toBe(1);
+    });
+    it('for "aa"', ()=>{
+      let anagramer = makeAnagramer();
+      let res = anagramer('aa');
+      expect(Array.isArray(res)).toBe(true);
+      expect(res.length).toBe(1);
+    });
+    it('for "Aa"', ()=>{
+      let anagramer = makeAnagramer();
+      let res = anagramer('Aa');
+      expect(Array.isArray(res)).toBe(true);
+      expect(res.length).toBe(2);
+    });
+    it('for "cca"', ()=>{
+      let anagramer = makeAnagramer();
+      let res = anagramer('cca');
+      expect(Array.isArray(res)).toBe(true);
+      expect(res.length).toBe(3);
+    });
+    it('for "Cat"', ()=>{
+      let anagramer = makeAnagramer();
+      let res = anagramer('Cat');
+      expect(Array.isArray(res)).toBe(true);
+      expect(res.length).toBe(6);
+    });
+    it('for "zeplin"', ()=>{
+      let anagramer = makeAnagramer();
+      let res = anagramer('zeplin');
+      expect(Array.isArray(res)).toBe(true);
+      expect(res.length).toBe(720);
+    });
+    it('for "HATTER"', ()=>{
+      let anagramer = makeAnagramer();
+      let res = anagramer('HATTER');
+      expect(Array.isArray(res)).toBe(true);
+      expect(res.length).toBe(360);
+    });
+    it('for "abcdefg"', ()=>{
+      let anagramer = makeAnagramer();
+      let res = anagramer('abcdefg');
+      expect(Array.isArray(res)).toBe(true);
+      expect(res.length).toBe(5040);
+    });
   });
-  it('anagramer should return correct results for "aa"', ()=>{
-    let anagramer = makeAnagramer();
-    let res = anagramer('aa');
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBe(1);
-  });
-  it('anagramer should return correct results for "Aa"', ()=>{
-    let anagramer = makeAnagramer();
-    let res = anagramer('Aa');
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBe(2);
-  });
-  it('anagramer should return correct results for "cca"', ()=>{
-    let anagramer = makeAnagramer();
-    let res = anagramer('cca');
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBe(3);
-  });
-  it('anagramer should return correct results for "Cat"', ()=>{
-    let anagramer = makeAnagramer();
-    let res = anagramer('Cat');
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBe(6);
-  });
-  it('anagramer should return correct results for "zeplin"', ()=>{
-    let anagramer = makeAnagramer();
-    let res = anagramer('zeplin');
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBe(720);
-  });
-  it('anagramer should return correct results for "HATTER"', ()=>{
-    let anagramer = makeAnagramer();
-    let res = anagramer('HATTER');
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBe(360);
-  });
-  it('anagramer should return correct results for "abcdefg"', ()=>{
-    let anagramer = makeAnagramer();
-    let res = anagramer('abcdefg');
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBe(720);
+  describe('memoization should make anagramer faster', ()=>{
+    it('more then two times faster secnond time it is called', ()=>{
+      let anagramer = makeAnagramer();
+      let timeBefore = Date.now();
+      expect(anagramer('abcdefg').length).toBe(5040);
+      let testRun1Time = Date.now() - timeBefore;
+      timeBefore = Date.now();
+      expect(anagramer('abcdefg').length).toBe(5040);
+      let testRun2Time = (Date.now() - timeBefore)*2;
+      expect(testRun2Time).toBeLessThan(testRun1Time);
+    });
+    it('more then two times faster secnond time it is called on anagram of first call', ()=>{
+      let anagramer = makeAnagramer();
+      let timeBefore = Date.now();
+      expect(anagramer('abcdefg').length).toBe(5040);
+      let testRun1Time = Date.now() - timeBefore;
+      timeBefore = Date.now();
+      expect(anagramer('gfedcba').length).toBe(5040);
+      let testRun2Time = (Date.now() - timeBefore)*2;
+      expect(testRun2Time).toBeLessThan(testRun1Time);
+    });
   });
 });
