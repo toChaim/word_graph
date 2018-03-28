@@ -1,4 +1,4 @@
-const { isWord, makeDictionary } = require('../adel');
+const { isWord, makeDictionary, makeAnagramer } = require('../adel');
 const dick = {'word': []};
 
 describe("isWord", () => {
@@ -47,5 +47,21 @@ describe("makeDictionary", () => {
           done();
         });
     });
+  });
+});
+
+describe('makeAnagramer', ()=>{
+  it('should be a function', ()=>{
+    expect(typeof makeAnagramer).toBe('function');
+  });
+  it('should return a function', ()=>{
+    let anagramer = makeAnagramer();
+    expect(typeof anagramer).toBe('function');
+  });
+  it('anagramer should return correct results', ()=>{
+    let anagramer = makeAnagramer();
+    let res = anagramer('a');
+    console.log(anagramer);
+    expect(Array.isArray(res)).toBe(true);
   });
 });
