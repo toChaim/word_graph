@@ -17,20 +17,20 @@ const makeAnagramer = function(){
     var memo = {};
 
     return (word)=>{
-        console.log('word=',word);
         word = word.split('');
-        var res = [];
+        var res = new Set();
 
         const swap = (index)=>{
-            if(index === word.length - 1){ res.push( word.join('') ); }
             for(let i = index; i < word.length; i++){
                 if(index !== i && word[index] === word[i]){ continue; }
                 [ word[i], word[index] ]=[ word[index], word[i]];
                 swap(index+1);
                 [ word[i], word[index] ]=[ word[index], word[i]];
             }
-
-            return res;
+            if(index === word.length - 1){ 
+                res.add( word.join('') );
+            }
+            return [...res];
         };
     
         memo[word] = memo[word] || swap(0);

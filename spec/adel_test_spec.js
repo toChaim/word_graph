@@ -58,10 +58,52 @@ describe('makeAnagramer', ()=>{
     let anagramer = makeAnagramer();
     expect(typeof anagramer).toBe('function');
   });
-  it('anagramer should return correct results', ()=>{
+  it('anagramer should return correct results for "a"', ()=>{
     let anagramer = makeAnagramer();
     let res = anagramer('a');
-    console.log(anagramer);
     expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBe(1);
+  });
+  it('anagramer should return correct results for "aa"', ()=>{
+    let anagramer = makeAnagramer();
+    let res = anagramer('aa');
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBe(1);
+  });
+  it('anagramer should return correct results for "Aa"', ()=>{
+    let anagramer = makeAnagramer();
+    let res = anagramer('Aa');
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBe(2);
+  });
+  it('anagramer should return correct results for "cca"', ()=>{
+    let anagramer = makeAnagramer();
+    let res = anagramer('cca');
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBe(3);
+  });
+  it('anagramer should return correct results for "Cat"', ()=>{
+    let anagramer = makeAnagramer();
+    let res = anagramer('Cat');
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBe(6);
+  });
+  it('anagramer should return correct results for "zeplin"', ()=>{
+    let anagramer = makeAnagramer();
+    let res = anagramer('zeplin');
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBe(720);
+  });
+  it('anagramer should return correct results for "HATTER"', ()=>{
+    let anagramer = makeAnagramer();
+    let res = anagramer('HATTER');
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBe(360);
+  });
+  it('anagramer should return correct results for "abcdefg"', ()=>{
+    let anagramer = makeAnagramer();
+    let res = anagramer('abcdefg');
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBe(720);
   });
 });
