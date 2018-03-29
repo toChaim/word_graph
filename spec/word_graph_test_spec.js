@@ -130,4 +130,13 @@ describe('removeLetter',()=>{
   it('should be a function', ()=>{
     expect(typeof removeLetter).toBe('function');
   });
+  describe('should return correct values', ()=>{
+    it('should return [] for "a"', ()=>{
+      let input = "a";
+      let output = [];
+      let actual = removeLetter(input);
+      console.log("\n",actual,"\n");
+      expect(actual).toEqual(output);
+    });
+  });
 });
