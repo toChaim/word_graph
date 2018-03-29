@@ -135,7 +135,18 @@ describe('removeLetter',()=>{
       let input = "a";
       let output = [];
       let actual = removeLetter(input);
-      console.log("\n",actual,"\n");
+      expect(actual).toEqual(output);
+    });
+    it('should return ["a"] for "aa"', ()=>{
+      let input = "aa";
+      let output = ["a"];
+      let actual = removeLetter(input);
+      expect(actual).toEqual(output);
+    });
+    it('should return ["a","b"] for "ab"', ()=>{
+      let input = "ab";
+      let output = ["a","b"].sort();
+      let actual = removeLetter(input).sort();
       expect(actual).toEqual(output);
     });
   });
