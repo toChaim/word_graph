@@ -42,14 +42,12 @@ const makeAnagramer = function(){
 // removeLetter takes a string
 // returns an array of strings each with one letter removed
 const removeLetter = (word)=>{
-    // word = word.split('');
-    // return word.map((mv,mi) => { return word.filter((fv,fi)=>fi===mi).join(''); });
     if(word.length < 2){ return []; }
-    var res = new Set();
+    var res = []
     for(let i = 0; i < word.length; i++){
-        res.add(word.slice(0,i)+word.slice(i+1,word.length));
+        if(word[i] !== word[i+1]){ res.push(word.slice(0,i)+word.slice(i+1,word.length)); }
     }
-    return [...res];
+    return res;
 }
 
 module.exports = { isWord, makeDictionary, makeAnagramer, removeLetter };
