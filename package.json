@@ -5,12 +5,20 @@
   "main": "adel.js",
   "dependencies": {},
   "devDependencies": {
-    "jasmine": "^3.1.0"
+    "jasmine": "^3.1.0",
+    "nyc": "^11.6.0"
   },
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "cover": "nyc jasmine"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "nyc": {
+    "exclude": [
+      "**/*spec.js",
+      "build"
+    ]
+  }
 }
