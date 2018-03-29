@@ -149,5 +149,11 @@ describe('removeLetter',()=>{
       let actual = removeLetter(input).sort();
       expect(actual).toEqual(output);
     });
+    it('should return ["at","ca","ct"] for "cat"', ()=>{
+      let input = "cat";
+      let output = ["at","ca","ct"].sort();
+      let actual = removeLetter(input).sort();
+      expect(actual).toEqual(output);
+    });
   });
 });
