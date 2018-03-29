@@ -39,4 +39,17 @@ const makeAnagramer = function(){
     };
 };
 
-module.exports = { isWord, makeDictionary, makeAnagramer };
+// removeLetter takes a string
+// returns an array of strings each with one letter removed
+const removeLetter = (word)=>{
+    // word = word.split('');
+    // return word.map((mv,mi) => { return word.filter((fv,fi)=>fi===mi).join(''); });
+    if(word.length < 2){ return []; }
+    var res = [];
+    for(let i = 0; i < word.length; i++){
+        res.push(word.slice(0,i)+word.slice(i+1,word.length));
+    }
+    return res;
+}
+
+module.exports = { isWord, makeDictionary, makeAnagramer, removeLetter };
