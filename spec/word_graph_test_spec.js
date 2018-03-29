@@ -1,5 +1,4 @@
-const { isWord, makeDictionary, makeAnagramer } = require('../word_graph');
-//const performance = require('performance');
+const { isWord, makeDictionary, makeAnagramer, removeLetter } = require('../word_graph');
 const dick = {'word': []};
 
 describe("isWord", () => {
@@ -124,5 +123,11 @@ describe('makeAnagramer', ()=>{
       let testRun2Time = (Date.now() - timeBefore)*2;
       expect(testRun2Time).toBeLessThan(testRun1Time);
     });
+  });
+});
+
+describe('removeLetter',()=>{
+  it('should be a function', ()=>{
+    expect(typeof removeLetter).toBe('function');
   });
 });
