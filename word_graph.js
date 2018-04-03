@@ -39,6 +39,37 @@ const makeAnagramer = function(){
     };
 };
 
+// makes a memoized anagramer function.
+// takes no arguments
+// resulting function takes string returns array of anagrams of the string.
+const makeAnagramer2 = function(){
+    var memo = {};
+
+    const anagramer = (word)=>{
+        if(word.length === 0){ return []; }
+        if(word.length === 1){ return [word]; }
+  
+        let key = word.split('').sort().join('');
+        if(memo[key]){ return memo[key]; }
+  
+        let res = [];
+        let possiblities = anagramer(key.slice(0,key.length-1));
+  
+        for(let w of possiblities){
+            for(let i = 0; i <= w.length; i++){
+                if(w[i] !== key[key.length-1]){
+                    res.push(w.slice(0,i) + key[key.length-1] + w.slice(i));
+                }
+            }
+        }
+
+        memo[key] = res;
+        return res;
+    };
+
+    return anagramer;
+};
+
 // removeLetter takes a string
 // returns an array of strings each with one letter removed
 const removeLetter = (word)=>{
@@ -50,4 +81,4 @@ const removeLetter = (word)=>{
     return res;
 }
 
-module.exports = { isWord, makeDictionary, makeAnagramer, removeLetter };
+module.exports = { isWord, makeDictionary, makeAnagramer, removeLetter, makeAnagramer2 };
