@@ -52,19 +52,19 @@ const makeAnagramer2 = function(){
         let key = word.split('').sort().join('');
         if(memo[key]){ return memo[key]; }
   
-        let res = [];
+        let res = new Set();
         let possiblities = anagramer(key.slice(0,key.length-1));
   
         for(let w of possiblities){
             for(let i = 0; i <= w.length; i++){
                 if(w[i] !== key[key.length-1]){
-                    res.push(w.slice(0,i) + key[key.length-1] + w.slice(i));
+                    res.add(w.slice(0,i) + key[key.length-1] + w.slice(i));
                 }
             }
         }
 
-        memo[key] = res;
-        return res;
+        memo[key] = [...res];
+        return memo[key];
     };
 
     return anagramer;
