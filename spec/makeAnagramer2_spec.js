@@ -56,20 +56,20 @@ describe('makeAnagramer2', ()=>{
     it('more then two times faster secnond time it is called', ()=>{
       let anagramer = makeAnagramer2();
       let timeBefore = Date.now();
-      expect(anagramer('abcdefg').length).toBe(5040);
+      expect(anagramer('abcdefgh').length).toBe(40320);
       let testRun1Time = Date.now() - timeBefore;
       timeBefore = Date.now();
-      expect(anagramer('abcdefg').length).toBe(5040);
+      expect(anagramer('abcdefgh').length).toBe(40320);
       let testRun2Time = (Date.now() - timeBefore)*2;
       expect(testRun2Time).toBeLessThan(testRun1Time);
     });
     it('more then two times faster secnond time it is called on anagram of first call', ()=>{
       let anagramer = makeAnagramer2();
       let timeBefore = Date.now();
-      expect(anagramer('abcdefg').length).toBe(5040);
+      expect(anagramer('abcdefgh').length).toBe(40320);
       let testRun1Time = Date.now() - timeBefore;
       timeBefore = Date.now();
-      expect(anagramer('gfedcba').length).toBe(5040);
+      expect(anagramer('gfedcbah').length).toBe(40320);
       let testRun2Time = (Date.now() - timeBefore)*2;
       expect(testRun2Time).toBeLessThan(testRun1Time);
     });
