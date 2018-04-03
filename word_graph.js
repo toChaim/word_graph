@@ -10,6 +10,9 @@ const makeDictionary = (fileName) => {
     });
 };
 
+// function takes a dictionary object with words as keys
+// returns an object with keys of sorted letters of words
+// values are an array of valid anagram words
 const makeAnagramLookup = (dictionary) => {
     let lookup = {};
     
