@@ -10,6 +10,22 @@ const makeDictionary = (fileName) => {
     });
 };
 
+const makeAnagramLookup = (dictionary) => {
+    let lookup = {};
+    
+    for(let word in dictionary){
+        let key = word.split('').sort().join('');
+        if(lookup[key]){
+            lookup[key].push([word]);
+        }
+        else{
+            lookup[key] = [word];
+        }
+    }
+
+    return lookup;
+};
+
 // makes a memoized anagramer function.
 // takes no arguments
 // resulting function takes string returns array of anagrams of the string.
@@ -81,4 +97,4 @@ const removeLetter = (word)=>{
     return res;
 }
 
-module.exports = { isWord, makeDictionary, makeAnagramer, removeLetter, makeAnagramer2 };
+module.exports = { isWord, makeDictionary, makeAnagramLookup, makeAnagramer, removeLetter, makeAnagramer2 };
