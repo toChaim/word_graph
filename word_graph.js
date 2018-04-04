@@ -10,6 +10,25 @@ const makeDictionary = (fileName) => {
     });
 };
 
+// function takes a dictionary object with words as keys
+// returns an object with keys of sorted letters of words
+// values are an array of valid anagram words
+const makeAnagramLookup = (dictionary) => {
+    let lookup = {};
+    
+    for(let word in dictionary){
+        let key = word.split('').sort().join('');
+        if(lookup[key]){
+            lookup[key].push(word);
+        }
+        else{
+            lookup[key] = [word];
+        }
+    }
+
+    return lookup;
+};
+
 // makes a memoized anagramer function.
 // takes no arguments
 // resulting function takes string returns array of anagrams of the string.
@@ -39,4 +58,46 @@ const makeAnagramer = function(){
     };
 };
 
-module.exports = { isWord, makeDictionary, makeAnagramer };
+// makes a memoized anagramer function.
+// takes no arguments
+// resulting function takes string returns array of anagrams of the string.
+const makeAnagramer2 = function(){
+    var memo = {};
+
+    const anagramer = (word)=>{
+        if(word.length === 0){ return []; }
+        if(word.length === 1){ return [word]; }
+  
+        let key = word.split('').sort().join('');
+        if(memo[key]){ return memo[key]; }
+  
+        let res = new Set();
+        let possiblities = anagramer(key.slice(0,key.length-1));
+  
+        for(let w of possiblities){
+            for(let i = 0; i <= w.length; i++){
+                if(w[i] !== key[key.length-1]){
+                    res.add(w.slice(0,i) + key[key.length-1] + w.slice(i));
+                }
+            }
+        }
+
+        memo[key] = [...res];
+        return memo[key];
+    };
+
+    return anagramer;
+};
+
+// removeLetter takes a string
+// returns an array of strings each with one letter removed
+const removeLetter = (word)=>{
+    if(word.length < 2){ return []; }
+    var res = []
+    for(let i = 0; i < word.length; i++){
+        if(word[i] !== word[i+1]){ res.push(word.slice(0,i)+word.slice(i+1,word.length)); }
+    }
+    return res;
+}
+
+module.exports = { isWord, makeDictionary, makeAnagramLookup, makeAnagramer, removeLetter, makeAnagramer2 };
