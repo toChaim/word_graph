@@ -10,6 +10,10 @@ const makeDictionary = (fileName) => {
     });
 };
 
+// function takes string
+// returns a sorted string
+const sortStr = (str) => str.split('').sort().join('');
+
 // function takes a dictionary object with words as keys
 // returns an object with keys of sorted letters of words
 // values are an array of valid anagram words
@@ -17,7 +21,7 @@ const makeAnagramLookup = (dictionary) => {
     let lookup = {};
     
     for(let word in dictionary){
-        let key = word.split('').sort().join('');
+        let key = sortStr(word);
         if(lookup[key]){
             lookup[key].push(word);
         }
@@ -36,8 +40,8 @@ const makeAnagramer = function(){
     var memo = {};
 
     return (word)=>{
+        let key = sortStr(word);
         word = word.split('');
-        let key = [...word].sort().join('');
         var res = new Set();
 
         const swap = (index)=>{
@@ -68,7 +72,7 @@ const makeAnagramer2 = function(){
         if(word.length === 0){ return []; }
         if(word.length === 1){ return [word]; }
   
-        let key = word.split('').sort().join('');
+        let key = sortStr(word);
         if(memo[key]){ return memo[key]; }
   
         let res = new Set();
