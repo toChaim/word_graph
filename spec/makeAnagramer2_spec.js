@@ -9,6 +9,12 @@ describe('makeAnagramer2', ()=>{
     expect(typeof anagramer).toBe('function');
   });
   describe('anagramer should return correct results', ()=>{
+    it('for ""', ()=>{
+      let anagramer = makeAnagramer2();
+      let res = anagramer('');
+      expect(Array.isArray(res)).toBe(true);
+      expect(res.length).toBe(0);
+    });
     it('for "a"', ()=>{
       let anagramer = makeAnagramer2();
       let res = anagramer('a');
