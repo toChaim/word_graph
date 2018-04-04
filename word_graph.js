@@ -19,7 +19,7 @@ const makeAnagramLookup = (dictionary) => {
     for(let word in dictionary){
         let key = word.split('').sort().join('');
         if(lookup[key]){
-            lookup[key].push([word]);
+            lookup[key].push(word);
         }
         else{
             lookup[key] = [word];
